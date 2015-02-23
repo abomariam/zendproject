@@ -15,7 +15,15 @@
       </controllersDirectory>
       <formsDirectory enabled="false"/>
       <layoutsDirectory enabled="false"/>
-      <modelsDirectory/>
+      <modelsDirectory>
+        <modelFile modelName="User"/>
+        <modelFile modelName="Category"/>
+        <modelFile modelName="Comment"/>
+        <modelFile modelName="Course"/>
+        <modelFile modelName="Material"/>
+        <modelFile modelName="Request"/>
+        <modelFile modelName="StudentCourses"/>
+      </modelsDirectory>
       <modulesDirectory>
         <moduleDirectory moduleName="admin">
           <apisDirectory enabled="false"/>
