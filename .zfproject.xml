@@ -13,7 +13,17 @@
         </controllerFile>
         <controllerFile controllerName="Error"/>
       </controllersDirectory>
-      <formsDirectory enabled="false"/>
+      <formsDirectory>
+        <formFile formName="UserDetails"/>
+        <formFile formName="UserLogin"/>
+        <formFile formName="CommentForm"/>
+        <formFile formName="RequestForm"/>
+        <formFile formName="CategoryForm"/>
+        <formFile formName="CourseForm"/>
+        <formFile formName="MaterialForm"/>
+        <formFile formName="UserAdminForm"/>
+        <formFile formName="ResponseForm"/>
+      </formsDirectory>
       <layoutsDirectory enabled="false"/>
       <modelsDirectory/>
       <modulesDirectory>
