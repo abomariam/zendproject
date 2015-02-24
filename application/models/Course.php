@@ -24,4 +24,8 @@ class Application_Model_Course extends Zend_Db_Table_Abstract {
         $array = $this->find($id)->toArray();
     }
 
+    function getCoursesByCategory_Id($id) {
+        return $this->fetchAll("category_id=$id")->toArray();
+    }
+
 }

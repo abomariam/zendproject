@@ -23,5 +23,12 @@ class Application_Model_Material extends Zend_Db_Table_Abstract {
     function getMaterialById($id) {
         $array = $this->find($id)->toArray();
     }
-
+    
+    function getMaterialsByCourseId($id){
+      return $this->fetchAll("course_id=$id")->toArray();
+      
+    }
+    
+  
+    
 }

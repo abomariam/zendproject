@@ -24,4 +24,17 @@ class Application_Model_Request extends zend_db_Table {
         $array = $this->find($id)->toArray();
     }
 
+    function getRequestsByCourse_Id($id){
+        return $this->fetchAll("courseid=$id")->toArray();
+    }
+    
+    
+    function getRequestsByUser_Id($id){
+        return $this->fetchAll("userid=$id")->toArray();
+    }
+    
+    
+    function getRequestsByResponser_Id($id){
+        return $this->fetchAll("responserid=$id")->toArray();
+    }
 }

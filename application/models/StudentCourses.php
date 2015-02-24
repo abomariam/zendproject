@@ -25,4 +25,8 @@ class Application_Model_StudentCourses extends Zend_Db_Table_Abstract {
         return $array[0];
     }
 
+    function getCourseByStudent_Id($id) {
+        return $this->fetchAll("studentid=$id")->toArray();
+    }
+
 }
