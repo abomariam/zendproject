@@ -1,6 +1,6 @@
 <?php
 
-class Student_StudentController extends Zend_Controller_Action
+class User_StudentController extends Zend_Controller_Action
 {
 
     public function init()
