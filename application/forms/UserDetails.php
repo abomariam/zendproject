@@ -12,7 +12,7 @@ class Application_Form_UserDetails extends Zend_Form
         $btn_decorator = Application_Form_Helper::$btn_decorator;
         $countries = Application_Form_Helper::$countries;
         
-        ZendX_JQuery::enableForm($this);
+//        ZendX_JQuery::enableForm($this);
         $name = new Zend_Form_Element_Text('name');
         $name->setLabel('User Name')
             ->addValidator(new Zend_Validate_Alpha)
