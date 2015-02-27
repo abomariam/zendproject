@@ -8,7 +8,6 @@ class Application_Form_UserLogin extends Zend_Form
         /* Form Elements & Other Definitions Here ... */
         $control_decorator = Application_Form_Helper::$control_decorator;
         $btn_decorator = Application_Form_Helper::$btn_decorator;
-        $countries = Application_Form_Helper::$countries;
         
         
         $email = new Zend_Form_Element_Text('email');

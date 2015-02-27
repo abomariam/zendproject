@@ -23,6 +23,8 @@
         <formFile formName="MaterialForm"/>
         <formFile formName="UserAdminForm"/>
         <formFile formName="ResponseForm"/>
+        <formFile formName="Response"/>
+        <formFile formName="ResponseForm"/>
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
