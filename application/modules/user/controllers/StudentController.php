@@ -31,6 +31,7 @@ class User_StudentController extends Zend_Controller_Action
 
     public function loginAction()
     {
+        $user_form = new Application_Form_UserLogin();
         if($this->getRequest()->isPost()){
             if($user_form->isValid($_POST)){
                 $data = $this->getRequest()->getParams();
