@@ -32,26 +32,29 @@ class User_StudentController extends Zend_Controller_Action
     public function loginAction()
     {
         if($this->getRequest()->isPost()){
-            $data = $this->getRequest()->getParams();
-            $db = Zend_Db_Table::getDefaultAdapter();
-            
-            $authAdapter = new Zend_Auth_Adapter_DbTable($db, 'user','email', 'password');
-            $authAdapter->setIdentity($data['email']);
-            $authAdapter->setCredential(md5($data['password']));
-            $result = $authAdapter->authenticate();
-            if ($result->isValid()) {
-            
-            $auth = Zend_Auth::getInstance();
-            $storage = $auth->getStorage();
-            $storage->write($authAdapter->getResultRowObject(
-            array('email' , 'id' , 'full_name', 'role')));
-            
-            return $this->_redirect('post/list');
-            } else {
-            $this->view->loginMessage = "Sorry, your username or password was incorrect";
-            $this->_forward('index','index');
+            if($user_form->isValid($_POST)){
+                $data = $this->getRequest()->getParams();
+                $db = Zend_Db_Table::getDefaultAdapter();
+
+                $authAdapter = new Zend_Auth_Adapter_DbTable($db, 'user','email', 'password');
+                $authAdapter->setIdentity($data['email']);
+                $authAdapter->setCredential(md5($data['password']));
+                $result = $authAdapter->authenticate();
+                if ($result->isValid()) {
+
+                $auth = Zend_Auth::getInstance();
+                $storage = $auth->getStorage();
+                $storage->write($authAdapter->getResultRowObject(
+                array('email' , 'id' , 'full_name', 'role')));
+
+                return $this->_redirect('post/list');
+                } else {
+                $this->view->loginMessage = "Sorry, your username or password was incorrect";
+                $this->_forward('index','index');
+                }
             }
         }
+        $this->view->form = $user_form;
     }
 
     public function editAction()
