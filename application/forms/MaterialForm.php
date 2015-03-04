@@ -10,7 +10,6 @@ class Application_Form_MaterialForm extends Zend_Form
         $control_decorator = Application_Form_Helper::$control_decorator;
         $btn_decorator = Application_Form_Helper::$btn_decorator;
 
-
         $name = new Zend_Form_Element_Text('name');
         $name->setLabel('Material Name')
                 ->addFilter(new Zend_Filter_StripTags)
