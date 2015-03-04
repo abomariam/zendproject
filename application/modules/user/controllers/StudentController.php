@@ -48,10 +48,9 @@ class User_StudentController extends Zend_Controller_Action
                 $storage->write($authAdapter->getResultRowObject(
                 array('email' , 'id' , 'full_name', 'role')));
 
-                return $this->_redirect('post/list');
+                return $this->_redirect('material/list');
                 } else {
                 $this->view->loginMessage = "Sorry, your username or password was incorrect";
-                $this->_forward('index','index');
                 }
             }
         }
