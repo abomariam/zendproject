@@ -1,6 +1,6 @@
 <?php
 
-class User_MaterialController extends Zend_Controller_Action
+class User_CourseController extends Zend_Controller_Action
 {
 
     public function init()
