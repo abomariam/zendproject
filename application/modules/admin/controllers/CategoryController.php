@@ -5,7 +5,10 @@ class Admin_CategoryController extends Zend_Controller_Action
 
     public function init()
     {
-        /* Initialize action controller here */
+        $auth = Zend_Auth::getInstance();
+        if ($auth->hasIdentity()) {
+            $this->view->admin=$auth->getIdentity();            
+        }
     }
 
     public function indexAction()
