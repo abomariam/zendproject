@@ -1,3 +1,11 @@
+<div class="col-md-8 col-md-offset-2">
 
-<?php echo $this->loginMessage ?>
-<?php echo $this->form; ?>
+    <?php if ($this->loginMessage) {?>
+    <div class="alert alert-danger" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        <?php echo $this->loginMessage ?>
+    </div>
+    <?php } ?>
+    <?php echo $this->form; ?>
+</div>

@@ -1,4 +1,158 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>User</b> and script/action name <b>list</b></p>
+<?php
+    $mahmoud = new StdClass;
+    $mahmoud->id= 1;
+    $mahmoud->name= 'Mahmoud Ahmed Mostafa';
+    $mahmoud->email='Eng.Mahmoud.A.Mostafa@gmail.com';
+    $mahmoud->gender='Male';
+    $mahmoud->signature='Freelancer Developer';
+    $mahmoud->country='Egypt';
+    $mahmoud->pic="http://i.forbesimg.com/media/lists/people/carlos-slim-helu_50x50.jpg";
+    $mahmoud->role='student';
+    $users = array($mahmoud);
+
+?>
+
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <div class="box-name">
+                    <i class="fa fa-user"></i>
+                    <span>Users List</span>
+                </div>
+                <div class="box-icons">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="expand-link">
+                        <i class="fa fa-expand"></i>
+                    </a>
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+                <div class="no-move"></div>
+            </div>
+            <div class="box-content no-padding">
+                <table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>E-Mail</th>
+                            <th>Gender</th>
+                            <th>Country</th>
+                            <th>Role</th>
+                            <th>Signature</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Start: list_row -->
+                        
+                        <?php foreach ($users as $user){ ?>
+                        <tr>
+                            <td><?php echo $user->id ?></td>
+                            <td><img class="img-rounded" src="<?php echo $user->pic ?>" alt=""><?php echo $user->name ?></td>
+                            <td><?php echo $user->email ?></td>
+                            <td><?php echo $user->gender ?></td>
+                            <td><?php echo $user->country ?></td>
+                            <td><?php echo $user->role ?></td>
+                            <td><?php echo $user->signature ?></td>
+                            <td>
+                                <button class="btn btn-primary" id="edit"><span class="fa fa-pencil-square-o"</button>
+                                <button class="btn btn-danger" id="del"><span class="fa fa-trash-o"</button>
+                            </td>
+                        </tr>
+                        <?php } ?>
+                        <!-- End: list_row -->
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>E-Mail</th>
+                            <th>Gender</th>
+                            <th>Country</th>
+                            <th>Role</th>
+                            <th>Signature</th>
+                            <th>Actions</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
+<!--
+<script type="text/javascript">
+// Run Datables plugin and create 3 variants of settings
+    function AllTables() {
+        TestTable1();
+        TestTable2();
+        TestTable3();
+        LoadSelect2Script(MakeSelect2);
+    }
+    function MakeSelect2() {
+        $('select').select2();
+        $('.dataTables_filter').each(function () {
+            $(this).find('label input[type=text]').attr('placeholder', 'Search');
+        });
+    }
+    $(document).ready(function () {
+        // Load Datatables and run plugin on tables 
+        LoadDataTablesScripts(AllTables);
+        // Add Drag-n-Drop feature
+        WinMove();
+    });
+    
+    
+    function TestTable1(){$('#datatable-1').dataTable({"aaSorting":[[0,"asc"]],"sDom":"<'box-content'<'col-sm-6'f><'col-sm-6 text-right'l><'clearfix'>>rt<'box-content'<'col-sm-6'i><'col-sm-6 text-right'p><'clearfix'>>","sPaginationType":"bootstrap","oLanguage":{"sSearch":"","sLengthMenu":'_MENU_'}});}
+</script>-->
+
+<script>
+    var del = document.getElementById('del');
+    var edit = document.getElementById('edit');
+    
+    edit.addEventListener('click',Edit);
+    
+    function Edit(event){
+    
+        e = event.target;
+
+
+//        e.value="Save";
+//        e.setAttribute('onclick', 'Save(event)');
+//        e.setAttribute('class', 'btn btn-success');
+//        e.innerHTML = '<span class="glyphicon glyphicon-ok"></span>';
+        row = e.parentNode.parentNode;
+//        e.parentNode.innerHTML += '<button class="btn btn-danger" onclick="cancel(event)">'+
+//                '<span class="glyphicon glyphicon-remove"></span>'+
+//                '</button>';
+
+        oldName = row.childNodes[0].innerHTML;
+        oldAddress = row.childNodes[1].innerHTML;
+        oldDepartment = row.childNodes[2].innerHTML;
+        
+        
+        console.log(row.childNodes[0]);
+        console.log(row.childNodes[1]);
+        console.log(row.childNodes[2]);
+        console.log(row.childNodes[3]);
+        console.log(row.childNodes[4]);
+        console.log(row.childNodes[5]);
+        console.log(row.childNodes[6]);
+
+        row.childNodes[1].innerHTML = '<input type="text" class="form-control" id="fname" value="'+oldName+'" />';
+        row.childNodes[3].innerHTML = '<input type="text" class="form-control" id="address" value="'+oldAddress+'" />';
+        row.childNodes[5].innerHTML = '<input type="text" class="form-control" id="department" value="'+oldDepartment+'" />';
+        row.childNodes[7].innerHTML = '<input type="text" class="form-control" id="department" value="'+oldDepartment+'" />';
+        row.childNodes[9].innerHTML = '<input type="text" class="form-control" id="department" value="'+oldDepartment+'" />';
+
+    
+    
+    }
+
+</script>

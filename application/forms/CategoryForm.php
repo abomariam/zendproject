@@ -19,6 +19,13 @@ class Application_Form_CategoryForm extends Zend_Form
             ->setDecorators($control_decorator)
             ->setAttrib('class', 'form-control');
         
+        $pic = new Zend_Form_Element_File('pic');
+        $pic->setLabel('Course Picture')
+            ->addFilter(new Zend_Filter_StripTags)
+            ->setDescription('Upload Course Picture')
+            ->setDecorators($control_decorator)
+            ->setAttrib('class', 'form-control');
+        
         $submit = new Zend_Form_Element_Submit('submit');
         $submit->setAttrib('class', 'btn btn-primary pull-right')
                 ->setDecorators($btn_decorator)
