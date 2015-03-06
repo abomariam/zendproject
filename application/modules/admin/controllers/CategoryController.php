@@ -25,7 +25,7 @@ class Admin_CategoryController extends Zend_Controller_Action
     public function listAction()
     {
        $cat_model=new Application_Model_Category();
-       $this->view->users=$cat_model->getAllCategories();
+       $this->view->cat=$cat_model->getAllCategories();
     }
 
     public function addAction()
@@ -33,7 +33,8 @@ class Admin_CategoryController extends Zend_Controller_Action
         $user_form = new Application_Form_CategoryForm();
         if($this->getRequest()->isPost()){
             if($user_form->isValid($_POST)){
-                $data = $this->getRequest()->getParams();
+                $cat_model = new Application_Model_Category();
+                $cat_model->addCategory($user_form->getValues());
             }
         }
         $this->view->form = $user_form;
@@ -56,8 +57,8 @@ class Admin_CategoryController extends Zend_Controller_Action
 	$this->view->action = 'edit';
 	if(!empty($id)){
             $category_model = new Application_Model_Category();
-            $userinfo = $category_model->getCategoriesById($id);
-            $this->view->edit = $userinfo[0];
+            $catinfo = $category_model->getCategoriesById($id);
+            $this->view->cat = $catinfo[0];
 	}
 	if($this->_request->isPost()){
             $data = $this->_request->getParams();

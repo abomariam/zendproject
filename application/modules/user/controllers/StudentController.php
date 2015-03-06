@@ -20,15 +20,12 @@ class User_StudentController extends Zend_Controller_Action
     {
         $this->view->page_title = "Registration";
         $user_form = new Application_Form_UserDetails();
-        
-        
         if($this->getRequest()->isPost()){
             if($user_form->isValid($_POST)){
                 $user_model = new Application_Model_User();
                 $this->view->success = $user_model->addUser($user_form->getValues());
             }
         }
-        
         $this->view->form = $user_form;
     }
 

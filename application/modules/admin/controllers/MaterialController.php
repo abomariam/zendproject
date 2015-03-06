@@ -5,13 +5,15 @@ class Admin_MaterialController extends Zend_Controller_Action
 
     public function init()
     {
-        $auth = Zend_Auth::getInstance();
+       $auth = Zend_Auth::getInstance();
         if ($auth->hasIdentity()) {
-            if($auth->getIdentity()->role==='admin'){
+            if($auth->getIdentity()->role =='admin'){
                 $this->view->admin=$auth->getIdentity(); 
             }else{
-                $this->_redirect("user/index");
+                $this->_redirect("user/login");
             }           
+        }else {
+            $this->_redirect("index/index");
         }
     }
 

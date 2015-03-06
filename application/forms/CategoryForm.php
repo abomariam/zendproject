@@ -32,11 +32,6 @@ class Application_Form_CategoryForm extends Zend_Form
                 ->setLabel('Save');
         
         
-        $this->addElements(array($name,$submit));
-
-        
+        $this->addElements(array($name,$submit));   
     }
-
-
 }
-
