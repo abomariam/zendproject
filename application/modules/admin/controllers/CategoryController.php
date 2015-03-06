@@ -24,41 +24,46 @@ class Admin_CategoryController extends Zend_Controller_Action
 
     public function listAction()
     {
-        // action body
+       $cat_model=new Application_Model_Category();
+       $this->view->users=$cat_model->getAllCategories();
     }
 
     public function addAction()
-    {
-        
-        
+    {       
         $user_form = new Application_Form_CategoryForm();
-       if($this->getRequest()->isPost()){
+        if($this->getRequest()->isPost()){
             if($user_form->isValid($_POST)){
                 $data = $this->getRequest()->getParams();
             }
-       }
-            
-            $this->view->form = $user_form;
+        }
+        $this->view->form = $user_form;
     }
 
     public function deleteAction()
     {
-        // action body
+        $id=$this->_request->getparam('id');
+            if(!empty($id))
+            {
+		$del_model=new Application_Model_Category();
+		$del_model->deleteCategory($id);
+            }
+	$this->redirect('/category');   
     }
 
     public function editAction()
     {
-        // action body
+        $id = $this->_request->getParam('id');
+	$this->view->action = 'edit';
+	if(!empty($id)){
+            $category_model = new Application_Model_Category();
+            $userinfo = $category_model->getCategoriesById($id);
+            $this->view->edit = $userinfo[0];
+	}
+	if($this->_request->isPost()){
+            $data = $this->_request->getParams();
+            $update_model = new Application_Model_Category();
+            $update_model->updateCategory($data);
+	}
+	//$this->render('add');
     }
-
-
 }
-
-
-
-
-
-
-
-
-
