@@ -7,10 +7,10 @@ class Admin_CategoryController extends Zend_Controller_Action
     {
         $auth = Zend_Auth::getInstance();
         if ($auth->hasIdentity()) {
-            if($storage->role==='admin'){
+            if($auth->getIdentity()->role =='admin'){
                 $this->view->admin=$auth->getIdentity(); 
             }else{
-                $this->_redirect("index/index");
+                $this->_redirect("user/login");
             }           
         }else {
             $this->_redirect("index/index");
