@@ -12,6 +12,8 @@ class Admin_CategoryController extends Zend_Controller_Action
             }else{
                 $this->_redirect("index/index");
             }           
+        }else {
+            $this->_redirect("index/index");
         }
     }
 
@@ -27,15 +29,16 @@ class Admin_CategoryController extends Zend_Controller_Action
 
     public function addAction()
     {
+        
+        
         $user_form = new Application_Form_CategoryForm();
-       if($this->getRequest()->isGet()){
-            if($user_form->isValid($_GET)){
+       if($this->getRequest()->isPost()){
+            if($user_form->isValid($_POST)){
                 $data = $this->getRequest()->getParams();
             }
+       }
+            
             $this->view->form = $user_form;
-        }else{
-                $this->_redirect("user/index");
-            }  
     }
 
     public function deleteAction()
