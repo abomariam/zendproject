@@ -5,9 +5,13 @@ class Admin_CourseController extends Zend_Controller_Action
 
     public function init()
     {
-        $auth = Zend_Auth::getInstance();
+       $auth = Zend_Auth::getInstance();
         if ($auth->hasIdentity()) {
-            $this->view->admin=$auth->getIdentity();            
+            if($storage->role==='admin'){
+                $this->view->admin=$auth->getIdentity(); 
+            }else{
+                $this->_redirect("index/index");
+            }           
         }
     }
 
@@ -23,7 +27,15 @@ class Admin_CourseController extends Zend_Controller_Action
 
     public function addAction()
     {
-        // action body
+        $user_form = new Application_Form_CourseForm();
+        if($this->getRequest()->isGet()){
+            if($user_form->isValid($_GET)){
+                $data = $this->getRequest()->getParams();
+            }
+             $this->view->form = $user_form;
+        }else{
+                $this->_redirect("user/index");
+            }   
     }
 
     public function listAction()

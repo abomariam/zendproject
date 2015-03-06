@@ -7,7 +7,11 @@ class Admin_CategoryController extends Zend_Controller_Action
     {
         $auth = Zend_Auth::getInstance();
         if ($auth->hasIdentity()) {
-            $this->view->admin=$auth->getIdentity();            
+            if($storage->role==='admin'){
+                $this->view->admin=$auth->getIdentity(); 
+            }else{
+                $this->_redirect("index/index");
+            }           
         }
     }
 
@@ -23,7 +27,15 @@ class Admin_CategoryController extends Zend_Controller_Action
 
     public function addAction()
     {
-        // action body
+        $user_form = new Application_Form_CategoryForm();
+       if($this->getRequest()->isGet()){
+            if($user_form->isValid($_GET)){
+                $data = $this->getRequest()->getParams();
+            }
+            $this->view->form = $user_form;
+        }else{
+                $this->_redirect("user/index");
+            }  
     }
 
     public function deleteAction()

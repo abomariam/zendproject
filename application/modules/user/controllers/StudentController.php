@@ -46,7 +46,6 @@ class User_StudentController extends Zend_Controller_Action
                 $authAdapter->setCredential(md5($data['password']));
                 $result = $authAdapter->authenticate();
                 if ($result->isValid()) {
-                    
                     $storage = $auth->getStorage();
                     $storage->write($authAdapter->getResultRowObject(array('id','name','email','gender' , 'signature','country' , 'pic','is_active','role')));              
                     if($auth->getIdentity()->is_active){

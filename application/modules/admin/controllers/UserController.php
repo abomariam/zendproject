@@ -23,7 +23,15 @@ class Admin_UserController extends Zend_Controller_Action
 
     public function addAction()
     {
-        // action body
+        $user_form = new Application_Form_UserAdminForm();
+        if($this->getRequest()->isGet()){
+            if($user_form->isValid($_GET)){
+                $data = $this->getRequest()->getParams();
+            }
+             $this->view->form = $user_form;
+        }else{
+                $this->_redirect("user/index");
+            }
     }
 
     public function listAction()

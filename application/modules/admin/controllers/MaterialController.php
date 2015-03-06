@@ -7,7 +7,11 @@ class Admin_MaterialController extends Zend_Controller_Action
     {
         $auth = Zend_Auth::getInstance();
         if ($auth->hasIdentity()) {
-            $this->view->admin=$auth->getIdentity();            
+            if($auth->getIdentity()->role==='admin'){
+                $this->view->admin=$auth->getIdentity(); 
+            }else{
+                $this->_redirect("user/index");
+            }           
         }
     }
 
@@ -28,7 +32,15 @@ class Admin_MaterialController extends Zend_Controller_Action
 
     public function addAction()
     {
-        // action body
+        $user_form = new Application_Form_MaterialForm();
+        if($this->getRequest()->isGet()){
+            if($user_form->isValid($_GET)){
+                $data = $this->getRequest()->getParams();
+            }
+             $this->view->form = $user_form;
+        }else{
+                $this->_redirect("user/index");
+            }  
     }
 
     public function editAction()
