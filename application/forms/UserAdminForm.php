@@ -81,6 +81,8 @@ class Application_Form_UserAdminForm extends Zend_Form
         
         $id= new Zend_Form_Element_Hidden('id');
         
-        $this->addElements(array($id,$name,$email, $gender,$password, $country,$is_active,$role,$pic,$submit));           
+        $this->addElements(array($id,$name,$email, $gender,$password, $country,$is_active,$role,$pic,$submit));
+
+                
     }
 }
