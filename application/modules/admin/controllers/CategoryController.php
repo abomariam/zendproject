@@ -52,7 +52,7 @@ class Admin_CategoryController extends Zend_Controller_Action
     }
 
     public function editAction()
-    {
+    {/*
         $id = $this->_request->getParam('id');
 	$this->view->action = 'edit';
 	if(!empty($id)){
@@ -65,6 +65,6 @@ class Admin_CategoryController extends Zend_Controller_Action
             $update_model = new Application_Model_Category();
             $update_model->updateCategory($data);
 	}
-	//$this->render('add');
+	//$this->render('add');*/
     }
 }

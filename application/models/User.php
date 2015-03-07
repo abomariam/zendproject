@@ -31,11 +31,4 @@ class Application_Model_User extends Zend_Db_Table_Abstract {
         $array = $this->find($id)->toArray();
         return $array[0];
     }
-    
-    
-    
-    
-    
-    
-
 }
