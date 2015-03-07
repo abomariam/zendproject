@@ -18,7 +18,8 @@ class User_CategoryController extends Zend_Controller_Action
 
     public function listAction()
     {
-        // action body
+        $user_model=new Application_Model_User();
+        $this->view->cat=$user_model->getAllUsers();
     }
 
 

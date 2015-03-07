@@ -18,7 +18,8 @@ class User_MaterialController extends Zend_Controller_Action
 
     public function listAction()
     {
-        // action body
+       $user_model=new Application_Model_Material();
+       $this->view->mat=$user_model->getAllMaterials();
     }
 
 

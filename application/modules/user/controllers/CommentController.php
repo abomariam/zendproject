@@ -33,10 +33,3 @@ class User_CommentController extends Zend_Controller_Action
 
 
 }
-
-
-
-
-
-
-
