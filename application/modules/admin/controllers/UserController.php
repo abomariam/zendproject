@@ -110,5 +110,6 @@ class Admin_UserController extends Zend_Controller_Action {
             echo $model->deleteUser($id);
         }
     }
-
+	$this->redirect('/admin'); 
+    }
 }
