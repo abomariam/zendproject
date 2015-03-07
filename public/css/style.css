@@ -1,0 +1,15 @@
+.avatar {
+    float: left;
+    margin-right: 5px;
+    width: 40px;
+}
+.avatar > img {
+    border: 1px solid #f8f8f8;
+    height: 40px;
+    width: 40px;
+}
+
+.user-mini > span.welcome {
+    font-weight: bold;
+    margin-top: 2px;
+}

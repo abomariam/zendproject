@@ -11,12 +11,13 @@ class Application_Model_User extends Zend_Db_Table_Abstract {
     }
 
     function deleteUser($id) {
-         $this->delete("id=$id");
+         return $this->delete("id=$id");
         
     }
 
     function updateUser($data) {
-        $this->update($data, 'id=' . $data['id']);
+        $id = $data['id'];
+        return $this->update($data, "id=$id");
         
         
     }
@@ -28,6 +29,7 @@ class Application_Model_User extends Zend_Db_Table_Abstract {
 
     function getUserById($id) {
         $array = $this->find($id)->toArray();
+        return $array[0];
     }
     
     

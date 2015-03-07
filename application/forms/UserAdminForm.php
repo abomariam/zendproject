@@ -49,6 +49,13 @@ class Application_Form_UserAdminForm extends Zend_Form
                 ->setAttrib('class', 'form-control')
                 ->setValue('EG');
         
+        $signature = new Zend_Form_Element_Textarea('signature');
+        $signature->setLabel('Signature')
+            ->addFilter(new Zend_Filter_StripTags)
+            ->setDescription('Please Enter Your Signature.')
+            ->setDecorators($control_decorator)
+            ->setAttrib('rows', '10')
+            ->setAttrib('class', 'form-control');
         
         $pic = new Zend_Form_Element_File('pic');
         $pic->setLabel('Picture')
@@ -73,6 +80,8 @@ class Application_Form_UserAdminForm extends Zend_Form
                 ->setAttrib('class', 'form-control')
                 ->setValue('student');
         
+        
+        
         $submit = new Zend_Form_Element_Submit('submit');
         $submit->setAttrib('class', 'btn btn-primary pull-right')
                 ->setDecorators($btn_decorator)
@@ -81,7 +90,7 @@ class Application_Form_UserAdminForm extends Zend_Form
         
         $id= new Zend_Form_Element_Hidden('id');
         
-        $this->addElements(array($id,$name,$email, $gender,$password, $country,$is_active,$role,$pic,$submit));
+        $this->addElements(array($id,$name,$email, $gender,$password, $country,$signature,$is_active,$role,$pic,$submit));
 
                 
     }

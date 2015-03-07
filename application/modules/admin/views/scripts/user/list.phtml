@@ -1,23 +1,22 @@
 <?php
-
-    $users = array(array("id"=> "1",
-                        "name"=> 'Mahmoud Ahmed Mostafa',
-                        "email"=>'Eng.Mahmoud.A.Mostafa@gmail.com',
-                        "gender"=>'Male',
-                        "signature"=>'Freelancer Developer',
-                        "country"=>'Egypt',
-                        "pic"=>"http://i.forbesimg.com/media/lists/people/carlos-slim-helu_50x50.jpg",
-                        "role"=>'student'),
-                    array("id"=> "3",
-                        "name"=> 'Mostafa Sayed',
-                        "email"=>'aa@gmail.com',
-                        "gender"=>'Male',
-                        "signature"=>'Freelancer Developer',
-                        "country"=>'Egypt',
-                        "pic"=>"http://i.forbesimg.com/media/lists/people/carlos-slim-helu_50x50.jpg",
-                        "role"=>'admin')
-        );
-
+$users = array(array("id" => "1",
+        "name" => 'Mahmoud Ahmed Mostafa',
+        "email" => 'Eng.Mahmoud.A.Mostafa@gmail.com',
+        "gender" => 'Male',
+        "signature" => 'Freelancer Developer',
+        "country" => 'Egypt',
+        "pic" => "http://i.forbesimg.com/media/lists/people/carlos-slim-helu_50x50.jpg",
+        "role" => 'student'),
+    array("id" => "3",
+        "name" => 'Mostafa Sayed',
+        "email" => 'aa@gmail.com',
+        "gender" => 'Male',
+        "signature" => 'Freelancer Developer',
+        "country" => 'Egypt',
+        "pic" => "http://i.forbesimg.com/media/lists/people/carlos-slim-helu_50x50.jpg",
+        "role" => 'admin')
+);
+$users = $this->users;
 ?>
 
 
@@ -26,21 +25,21 @@
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Edit User</h4>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" name="save">Save changes</button>
-      </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Edit User</h4>
+            </div>
+            <div class="modal-body">
+<?php echo $this->form; ?>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" name="save">Save changes</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 
@@ -82,23 +81,23 @@
                     </thead>
                     <tbody>
                         <!-- Start: list_row -->
-                        
-                        <?php foreach ($users as $user){ ?>
-                        <tr>
-                            <td><?php echo $user["id"] ?></td>
-                            <td><img class="img-rounded" src="<?php echo $user["pic"] ?>" alt=""><?php echo $user["name"] ?></td>
-                            <td><?php echo $user["email"] ?></td>
-                            <td><?php echo $user["gender"] ?></td>
-                            <td><?php echo $user["country"] ?></td>
-                            <td><?php echo $user["role"] ?></td>
-                            <td><?php echo $user["signature"] ?></td>
-                            <td>
-                                
-                                <button class="btn btn-primary" name="edit" value="<?php echo $user["id"] ?>"><span class="fa fa-pencil-square-o"</button>
-                                <button class="btn btn-danger" name="del" value="<?php echo $user["id"] ?>"><span class="fa fa-trash-o"</button>
-                            </td>
-                        </tr>
-                        <?php } ?>
+
+<?php foreach ($users as $user) { ?>
+                            <tr>
+                                <td><?php echo $user["id"] ?></td>
+                                <td><img class="img-rounded" src="<?php echo $this->baseUrl() . $user["pic"] ?>" alt=""><?php echo $user["name"] ?></td>
+                                <td><?php echo $user["email"] ?></td>
+                                <td><?php echo $user["gender"] ?></td>
+                                <td><?php echo $user["country"] ?></td>
+                                <td><?php echo $user["role"] ?></td>
+                                <td><?php echo $user["signature"] ?></td>
+                                <td>
+
+                                    <button class="btn btn-primary" name="edit" value="<?php echo $user["id"] ?>"><span class="fa fa-pencil-square-o"</button>
+                                    <button class="btn btn-danger" name="del" value="<?php echo $user["id"] ?>"><span class="fa fa-trash-o"</button>
+                                </td>
+                            </tr>
+<?php } ?>
                         <!-- End: list_row -->
                     </tbody>
                     <tfoot>
@@ -145,51 +144,105 @@
 </script>-->
 
 <script>
-    
-    $("[name=del]").click(Delete);
-    
-    
-    function Delete(event){
-        e = event.target;
-    var ajaxRequest = new XMLHttpRequest();
-    
-    ajaxRequest.open('POST','<?php echo $this->baseUrl() ?>/admin/user/delete',true);
-    ajaxRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    
-    
-    ajaxRequest.send("id="+e.value);
-    
-    ajaxRequest.onreadystatechange = function (){
-      if(ajaxRequest.readyState === 4 && ajaxRequest.status === 200)  {
-          
-          var text= ajaxRequest.responseText.trim();
-//          alert(text);
-          if(text > 0){
-            e.parentNode.parentNode.remove();
-          }
-          else{
-              alert("Couldn't Delete");
-          }
-         
-      }
-    };
-    
-    }
- 
-    $("[name=edit]").click(Edit);
-    function Edit(event){
 
-        id=event.target.value;
-        $('.modal-body').html(id);
-    
-        $("#myModal").modal('show');
+    $("[name=del]").click(Delete);
+
+
+    function Delete(event) {
+        e = event.target;
+        var ajaxRequest = new XMLHttpRequest();
+
+        ajaxRequest.open('POST', '<?php echo $this->baseUrl() ?>/admin/user/delete', true);
+        ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+
+        ajaxRequest.send("id=" + e.value);
+
+        ajaxRequest.onreadystatechange = function () {
+            if (ajaxRequest.readyState === 4 && ajaxRequest.status === 200) {
+
+                var text = ajaxRequest.responseText.trim();
+//          alert(text);
+                if (text > 0) {
+                    e.parentNode.parentNode.remove();
+                }
+                else {
+                    alert("Couldn't Delete");
+                }
+
+            }
+        };
+
+    }
+
+    $("[name=edit]").click(Edit);
+    function Edit(event) {
+
+        id = event.target.value;
+//        $('.modal-body').html(id);
+        var target = $( event.target.parentNode.parentNode );
+        var text = target.contents().filter(function () {
+            return this.nodeType != 3;
+        });
         
-    
+        $('#id').attr('value', $(text[0]).text());
+        $('#name').attr('value', $(text[1]).text());
+        $('#email').attr('value', $(text[2]).text());
+//        $('#gender').attr('value', 'female');
+        console.log($(text[3]).text());
+        if($(text[3]).text() == 'male'){
+            document.getElementById('gender-male').checked = true;
+            document.getElementById('gender-female').checked = false;
+        } else {
+            document.getElementById('gender-male').checked = false;
+            document.getElementById('gender-female').checked = true;
+        }
+        document.getElementById('country').value=$(text[4]).text();
+        document.getElementById('role').value=$(text[5]).text();
+//        $('#role').attr('value', $(text[5]).text());
+        $('#signature').attr('value', $(text[6]).text());
+        $("#myModal").modal('show');
+
     }
-    
+
     $("[name=save]").click(Save);
-    function Save(event){
+    function Save(event) {
 //        alert("saved");
+
+        e = event.target;
+        var ajaxRequest = new XMLHttpRequest();
+
+        ajaxRequest.open('POST', '<?php echo $this->baseUrl() ?>/admin/user/edit', true);
+        ajaxRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        
+        var str = "id=" + id + 
+                "&name="+$('#name').val()+
+                "&email="+$('#email').val()+
+                "&gender="+$('input:radio[name=gender]:checked').val()+
+                "&country="+$('#country').val()+
+                "&role="+$('#role').val()+
+                "&signature="+$('#signature').val()+
+                "&is_active="+$('#is_active').val()+
+                "&pic="+$('#pic').val();
+        
+//        alert(str);
+
+        ajaxRequest.send(str);
+
+        ajaxRequest.onreadystatechange = function () {
+            if (ajaxRequest.readyState === 4 && ajaxRequest.status === 200) {
+
+                var text = ajaxRequest.responseText.trim();
+          alert(text);
+                if (text > 0) {
+                    e.parentNode.parentNode.remove();
+                }
+                else {
+                    alert("Couldn't Update");
+                }
+
+            }
+        };
     }
-    
+
 </script>
