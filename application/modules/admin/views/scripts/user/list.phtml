@@ -1,16 +1,47 @@
 <?php
-    $mahmoud = new StdClass;
-    $mahmoud->id= 1;
-    $mahmoud->name= 'Mahmoud Ahmed Mostafa';
-    $mahmoud->email='Eng.Mahmoud.A.Mostafa@gmail.com';
-    $mahmoud->gender='Male';
-    $mahmoud->signature='Freelancer Developer';
-    $mahmoud->country='Egypt';
-    $mahmoud->pic="http://i.forbesimg.com/media/lists/people/carlos-slim-helu_50x50.jpg";
-    $mahmoud->role='student';
-    $users = array($mahmoud);
+
+    $users = array(array("id"=> "1",
+                        "name"=> 'Mahmoud Ahmed Mostafa',
+                        "email"=>'Eng.Mahmoud.A.Mostafa@gmail.com',
+                        "gender"=>'Male',
+                        "signature"=>'Freelancer Developer',
+                        "country"=>'Egypt',
+                        "pic"=>"http://i.forbesimg.com/media/lists/people/carlos-slim-helu_50x50.jpg",
+                        "role"=>'student'),
+                    array("id"=> "3",
+                        "name"=> 'Mostafa Sayed',
+                        "email"=>'aa@gmail.com',
+                        "gender"=>'Male',
+                        "signature"=>'Freelancer Developer',
+                        "country"=>'Egypt',
+                        "pic"=>"http://i.forbesimg.com/media/lists/people/carlos-slim-helu_50x50.jpg",
+                        "role"=>'admin')
+        );
 
 ?>
+
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Edit User</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" name="save">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -54,16 +85,17 @@
                         
                         <?php foreach ($users as $user){ ?>
                         <tr>
-                            <td><?php echo $user->id ?></td>
-                            <td><img class="img-rounded" src="<?php echo $user->pic ?>" alt=""><?php echo $user->name ?></td>
-                            <td><?php echo $user->email ?></td>
-                            <td><?php echo $user->gender ?></td>
-                            <td><?php echo $user->country ?></td>
-                            <td><?php echo $user->role ?></td>
-                            <td><?php echo $user->signature ?></td>
+                            <td><?php echo $user["id"] ?></td>
+                            <td><img class="img-rounded" src="<?php echo $user["pic"] ?>" alt=""><?php echo $user["name"] ?></td>
+                            <td><?php echo $user["email"] ?></td>
+                            <td><?php echo $user["gender"] ?></td>
+                            <td><?php echo $user["country"] ?></td>
+                            <td><?php echo $user["role"] ?></td>
+                            <td><?php echo $user["signature"] ?></td>
                             <td>
-                                <button class="btn btn-primary" id="edit"><span class="fa fa-pencil-square-o"</button>
-                                <button class="btn btn-danger" id="del"><span class="fa fa-trash-o"</button>
+                                
+                                <button class="btn btn-primary" name="edit" value="<?php echo $user["id"] ?>"><span class="fa fa-pencil-square-o"</button>
+                                <button class="btn btn-danger" name="del" value="<?php echo $user["id"] ?>"><span class="fa fa-trash-o"</button>
                             </td>
                         </tr>
                         <?php } ?>
@@ -113,47 +145,51 @@
 </script>-->
 
 <script>
-    var del = document.getElementById('del');
-    var edit = document.getElementById('edit');
     
-    edit.addEventListener('click',Edit);
+    $("[name=del]").click(Delete);
     
-    function Edit(event){
     
+    function Delete(event){
         e = event.target;
-
-
-//        e.value="Save";
-//        e.setAttribute('onclick', 'Save(event)');
-//        e.setAttribute('class', 'btn btn-success');
-//        e.innerHTML = '<span class="glyphicon glyphicon-ok"></span>';
-        row = e.parentNode.parentNode;
-//        e.parentNode.innerHTML += '<button class="btn btn-danger" onclick="cancel(event)">'+
-//                '<span class="glyphicon glyphicon-remove"></span>'+
-//                '</button>';
-
-        oldName = row.childNodes[0].innerHTML;
-        oldAddress = row.childNodes[1].innerHTML;
-        oldDepartment = row.childNodes[2].innerHTML;
-        
-        
-        console.log(row.childNodes[0]);
-        console.log(row.childNodes[1]);
-        console.log(row.childNodes[2]);
-        console.log(row.childNodes[3]);
-        console.log(row.childNodes[4]);
-        console.log(row.childNodes[5]);
-        console.log(row.childNodes[6]);
-        
-
-        row.childNodes[1].innerHTML = '<input type="text" class="form-control" id="fname" value="'+oldName+'" />';
-        row.childNodes[3].innerHTML = '<input type="text" class="form-control" id="address" value="'+oldAddress+'" />';
-        row.childNodes[5].innerHTML = '<input type="text" class="form-control" id="department" value="'+oldDepartment+'" />';
-        row.childNodes[7].innerHTML = '<input type="text" class="form-control" id="department" value="'+oldDepartment+'" />';
-        row.childNodes[9].innerHTML = '<input type="text" class="form-control" id="department" value="'+oldDepartment+'" />';
-
+    var ajaxRequest = new XMLHttpRequest();
     
+    ajaxRequest.open('POST','<?php echo $this->baseUrl() ?>/admin/user/delete',true);
+    ajaxRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    
+    
+    ajaxRequest.send("id="+e.value);
+    
+    ajaxRequest.onreadystatechange = function (){
+      if(ajaxRequest.readyState === 4 && ajaxRequest.status === 200)  {
+          
+          var text= ajaxRequest.responseText.trim();
+//          alert(text);
+          if(text > 0){
+            e.parentNode.parentNode.remove();
+          }
+          else{
+              alert("Couldn't Delete");
+          }
+         
+      }
+    };
     
     }
+ 
+    $("[name=edit]").click(Edit);
+    function Edit(event){
 
+        id=event.target.value;
+        $('.modal-body').html(id);
+    
+        $("#myModal").modal('show');
+        
+    
+    }
+    
+    $("[name=save]").click(Save);
+    function Save(event){
+//        alert("saved");
+    }
+    
 </script>

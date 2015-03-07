@@ -21,7 +21,7 @@
                         <script src="http://getbootstrap.com/docs-assets/js/respond.min.js"></script>
         <![endif]-->
         
-         <!--<script src="<?php echo $this->baseUrl() ?>/admin1/plugins/jquery/jquery-2.1.0.min.js"></script>-->
+         <script src="<?php echo $this->baseUrl() ?>/admin1/plugins/jquery/jquery-2.1.0.min.js"></script>
         <!--<script src="<?php echo $this->baseUrl() ?>/admin1/plugins/jquery-ui/jquery-ui.min.js"></script>-->
          <!--<script src="<?php echo $this->baseUrl() ?>/admin1/js/devoops.js"></script>-->
     </head>
@@ -69,12 +69,13 @@
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle account" data-toggle="dropdown">
                                             <div class="avatar">
-                                                <img src="<?php echo $this->baseUrl() ?>/admin1/img/avatar.jpg" class="img-rounded" alt="avatar" />
+                                                <img src="<?php echo $this->baseUrl(). $this->admin->pic ?>" class="img-rounded" alt="avatar" />
                                             </div>
                                             <i class="fa fa-angle-down pull-right"></i>
                                             <div class="user-mini pull-right">
                                                 <span class="welcome">Welcome,</span>
-                                                <span>Jane Devoops</span>
+                                                <span><?php echo $this->admin->name; ?></span>
+                                                
                                             </div>
                                         </a>
                                         <ul class="dropdown-menu">
@@ -85,7 +86,7 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="#">
+                                                <a href="<?php echo $this->baseUrl() ?>/student/logout">
                                                     <i class="fa fa-power-off"></i>
                                                     <span>Logout</span>
                                                 </a>

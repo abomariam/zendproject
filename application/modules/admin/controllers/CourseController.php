@@ -70,12 +70,3 @@ class Admin_CourseController extends Zend_Controller_Action
 
 
 }
-
-
-
-
-
-
-
-
-

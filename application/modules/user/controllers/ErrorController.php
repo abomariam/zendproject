@@ -15,7 +15,7 @@ class User_ErrorController extends Zend_Controller_Action
 
     public function errorAction()
     {
-        
+        var_dump($this->_getAllParams());
     }
 
     public function error403Action()
