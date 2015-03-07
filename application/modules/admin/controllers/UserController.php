@@ -23,26 +23,24 @@ class Admin_UserController extends Zend_Controller_Action {
 
     public function editAction() {
         // action body
-        
 //        var_dump($this->getRequest()->getParams());
-        
-         if ($this->getRequest()->isPost()) {
-                $this->_helper->layout()->disableLayout();
-                $this->_helper->viewRenderer->setNoRender(true);
-                
+
+        if ($this->getRequest()->isPost()) {
+            $this->_helper->layout()->disableLayout();
+            $this->_helper->viewRenderer->setNoRender(true);
+
 //                $user_form = new Application_Form_UserAdminForm();
 //                $user_form->email->clearValidators();
 //                
 //                $user_form->removeElement('password');
 //                
 //                $user_form->populate($_POST);
-                
 //                var_dump($user_form->getValues());
 //                var_dump($_POST);
 //                if ($user_form->isValid($_POST)) {
 //                    $data = $user_form->getValues();
 //                    
-                    $model = new Application_Model_User();
+            $model = new Application_Model_User();
 //                    if (!empty($data['pic'])) {
 //                        try {
 //                            $user_form->pic->receive();
@@ -55,10 +53,10 @@ class Admin_UserController extends Zend_Controller_Action {
 //                        }
 //                    }
 //            var_dump($_POST);
-                    echo $model->updateUser($_POST);
+            echo $model->updateUser($_POST);
 
 //                }
-            }
+        }
     }
 
     public function addAction() {
@@ -99,20 +97,18 @@ class Admin_UserController extends Zend_Controller_Action {
 
     public function deleteAction() {
         // action body
-
 //        var_dump($this->getRequest()->getParams());
-    
-            if ($this->getRequest()->isPost()) {
-                $this->_helper->layout()->disableLayout();
-                $this->_helper->viewRenderer->setNoRender(true);
-                
-                $id = $this->getRequest()->getParam('id');
-                
-                $model = new Application_Model_User();
-                
-                echo $model->deleteUser($id) ;
-            }
 
+        if ($this->getRequest()->isPost()) {
+            $this->_helper->layout()->disableLayout();
+            $this->_helper->viewRenderer->setNoRender(true);
+
+            $id = $this->getRequest()->getParam('id');
+
+            $model = new Application_Model_User();
+
+            echo $model->deleteUser($id);
+        }
     }
 
 }
