@@ -29,11 +29,4 @@ class Application_Model_User extends Zend_Db_Table_Abstract {
     function getUserById($id) {
         $array = $this->find($id)->toArray();
     }
-    
-    
-    
-    
-    
-    
-
 }
