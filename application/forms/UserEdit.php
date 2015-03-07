@@ -44,6 +44,11 @@ class Application_Form_UserDetails extends Zend_Form
                 ->setValue('EG');
         
         
+        $pic = new Zend_Form_Element_File('pic');
+        $pic->setLabel('Picture')
+            
+//            ->setDestination('/var/www/html/zendproject/upload')
+            ->setValueDisabled(true);
         
         $submit = new Zend_Form_Element_Submit('submit');
         $submit->setAttrib('class', 'btn btn-primary pull-right')
@@ -51,7 +56,7 @@ class Application_Form_UserDetails extends Zend_Form
                 ->setLabel('Submit');
         
         
-        $this->addElements(array($name,$email, $gender, $country,$submit));
+        $this->addElements(array($name,$email, $gender, $country,$pic,$submit));
 
                 
     }
