@@ -1,21 +1,5 @@
 <?php
-$users = array(array("id" => "1",
-        "name" => 'Mahmoud Ahmed Mostafa',
-        "email" => 'Eng.Mahmoud.A.Mostafa@gmail.com',
-        "gender" => 'Male',
-        "signature" => 'Freelancer Developer',
-        "country" => 'Egypt',
-        "pic" => "http://i.forbesimg.com/media/lists/people/carlos-slim-helu_50x50.jpg",
-        "role" => 'student'),
-    array("id" => "3",
-        "name" => 'Mostafa Sayed',
-        "email" => 'aa@gmail.com',
-        "gender" => 'Male',
-        "signature" => 'Freelancer Developer',
-        "country" => 'Egypt',
-        "pic" => "http://i.forbesimg.com/media/lists/people/carlos-slim-helu_50x50.jpg",
-        "role" => 'admin')
-);
+
 $users = $this->users;
 ?>
 
@@ -233,14 +217,14 @@ $users = $this->users;
             if (ajaxRequest.readyState === 4 && ajaxRequest.status === 200) {
 
                 var text = ajaxRequest.responseText.trim();
-          alert(text);
+//          alert(text);
                 if (text > 0) {
                     e.parentNode.parentNode.remove();
                 }
                 else {
                     alert("Couldn't Update");
                 }
-
+                $("#myModal").modal('hide');
             }
         };
     }

@@ -97,7 +97,7 @@ class Admin_UserController extends Zend_Controller_Action {
 
     public function deleteAction() {
         // action body
-//        var_dump($this->getRequest()->getParams());
+        //var_dump($this->getRequest()->getParams());
 
         if ($this->getRequest()->isPost()) {
             $this->_helper->layout()->disableLayout();
