@@ -5,15 +5,15 @@ class Application_Model_Course extends Zend_Db_Table_Abstract {
     protected $_name = 'course';
 
     function addCourse($data) {
-        $this->insert($data);
+        return $this->insert($data);
     }
 
     function deleteCourse($id) {
-        $this->delete("id=$id");
+        return $this->delete("id=$id");
     }
 
     function updateCourse($data) {
-        $this->update($data, 'id=' . $data['id']);
+        return $this->update($data, 'id=' . $data['id']);
     }
 
     function getAllCourse() {
@@ -22,6 +22,7 @@ class Application_Model_Course extends Zend_Db_Table_Abstract {
 
     function getCourseById($id) {
         $array = $this->find($id)->toArray();
+        return $array[0];
     }
 
     function getCoursesByCategory_Id($id) {

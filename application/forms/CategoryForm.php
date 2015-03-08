@@ -12,7 +12,6 @@ class Application_Form_CategoryForm extends Zend_Form
         
         $name = new Zend_Form_Element_Text('name');
         $name->setLabel('Category Name')
-            ->addValidator(new Zend_Validate_Alnum)
             ->addFilter(new Zend_Filter_StripTags)
             ->setRequired()
             ->setDescription('Please Enter Category Name.')
