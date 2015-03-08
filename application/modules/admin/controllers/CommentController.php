@@ -36,7 +36,12 @@ class Admin_CommentController extends Zend_Controller_Action
 
     public function listAction()
     {
-        // action body
+        $id=$this->_request->getparam('material_id');
+            if(!empty($id))
+            {
+		$del_model=new Application_Model_Material();
+		$del_model->getCommentsByMaterial_Id($id);
+            }
     }
 
     public function editAction()
@@ -46,9 +51,16 @@ class Admin_CommentController extends Zend_Controller_Action
 
     public function deleteAction()
     {
-        // action body
+        if ($this->getRequest()->isPost()) {
+            $this->_helper->layout()->disableLayout();
+            $this->_helper->viewRenderer->setNoRender(true);
+
+            $id = $this->getRequest()->getParam('id');
+
+            $model = new Application_Model_Comment();
+
+            echo $model->deleteComment($id);
+        }
     }
-
-
 }
 
