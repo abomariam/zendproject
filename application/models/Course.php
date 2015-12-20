@@ -31,14 +31,14 @@ class Application_Model_Course extends Zend_Db_Table_Abstract {
 
     function getCategoryByCourseId($id) {
         $select = $this->select()
-                ->where("id=$id")
+                ->where("category_id=$id")
                 ->Join('category', 'category.id=course.category_id');
         return $this->fetchAll($select)->toArray();
     }
     
     function getUserByCourseId($id) {
         $select = $this->select()
-                ->where("id=$id")
+                ->where("instructor_id=$id")
                 ->Join('user', 'user.id=course.instructor_id');
         return $this->fetchAll($select)->toArray();
     }

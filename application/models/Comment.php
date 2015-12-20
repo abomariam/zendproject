@@ -25,16 +25,16 @@ class Application_Model_Comment extends Zend_Db_Table_Abstract {
     }
     
     function getCommentsByMaterial_Id($id){
-       return $this->fetchAll("materialid=$id")->toArray();
+       return $this->fetchAll("material_id=$id")->toArray();
     }
     
     function getCommentsByCourse_Id($id){
-       return $this->fetchAll("courseid=$id")->toArray();
+       return $this->fetchAll("course_id=$id")->toArray();
     }
     
     
     function getCommentsByUser_Id($id){
-        return $this->fetchAll("userid=$id")->toArray();
+        return $this->fetchAll("user_id=$id")->toArray();
     }
 
 }
