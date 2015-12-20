@@ -1,1 +1,44 @@
-User Module
+
+<?php
+$courses = $this->courses;
+?>
+
+
+
+
+<div class="row">
+    <div class="col-xs-12">
+
+        <div class="accordion" id="accordion2">
+
+<?php foreach ($this->cats as $cat) { ?>
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle alert-success" data-toggle="collapse" data-parent="#accordion2" href="#collapse<?php echo $cat['id']; ?>">
+    <?php echo $cat['name']; ?>
+                        </a>
+                    </div>
+                    <div id="collapse<?php echo $cat['id']; ?>" class="accordion-body collapse">
+                        <div class="accordion-inner">
+    <?php
+    foreach ($this->courses as $course) {
+        if ($course['category_id'] == $cat['id']) {
+            ?>
+                                    <a href="<?php echo $this->baseUrl() ?>/course/list/id/<?php echo $course["id"]; ?>">
+                                        <?php echo $course["name"]; ?>
+                                    </a>
+                                    <br />
+                                    <?php
+                                }
+                            }
+                            ?>
+                        </div>
+                    </div>
+                </div>
+
+<?php } ?>
+
+        </div>
+    </div>
+
+

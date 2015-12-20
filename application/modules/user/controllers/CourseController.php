@@ -18,8 +18,9 @@ class User_CourseController extends Zend_Controller_Action
 
     public function listAction()
     {
+        $id=  $this->getRequest()->getParam('id');
        $user_model=new Application_Model_Course();
-       $this->view->course=$user_model->getAllCourse();
+       $this->view->course=$user_model->getCourseById($id);
     }
 
 
